@@ -1,0 +1,169 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:LocalNet.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:paz="using:Avalonia.Controls.PanAndZoom"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:CompileBindings="False"
+        x:Class="LocalNet.Views.MainWindow"
+        x:DataType="vm:MainWindowViewModel"
+        Icon="\Assets\free-icon-personal-growth-12670454.png"
+        Title="LocalNet">
+
+    <Design.DataContext>
+        <!-- This only sets the DataContext for the previewer in an IDE,
+             to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
+        <vm:MainWindowViewModel/>
+    </Design.DataContext>
+
+    <Grid ZIndex="10"  ColumnDefinitions="*, 3.5*">
+    <Grid Background="#32363f" >
+        
+        
+        <Grid Margin="15 10 15 0" RowDefinitions="Auto,Auto,Auto" >
+        
+            <Grid Margin="0 0 0 5" ColumnDefinitions="*,*,*,*">
+                <Grid Grid.Column="0" >
+        
+                    <Button Command="{Binding CreateButton}" CornerRadius="10">
+                        <Image Source="/Assets/technology-integration.png"></Image>
+        
+                    </Button>
+        
+                </Grid>
+                <Grid Grid.Column="1" >
+                    <Button CornerRadius="10">
+                        <Image Source="/Assets/Commutator.png"></Image>
+                    </Button>
+                </Grid>
+                <Grid Grid.Column="2" >
+                    <Button CornerRadius="10">
+                        <Image Source="/Assets/PC.png"></Image>
+                    </Button>
+                </Grid>
+                <Grid Grid.Column="3" >
+                    <Button CornerRadius="10">
+                        <Image Source="/Assets/wireless-router.png"></Image>
+                    </Button>
+                </Grid>
+            </Grid>
+            <Grid Grid.Row="1" ColumnDefinitions="*,*,*,*">
+                <Grid Grid.Column="0" >
+                    <Button CornerRadius="10">
+                        <Image Source="/Assets/laptop.png"></Image>
+                    </Button>
+                </Grid>
+                <Grid   Grid.Column="1" >
+                    <Button CornerRadius="10">
+                        <Image Source="/Assets/iphone.png"></Image>
+                    </Button>
+                </Grid>
+                <Grid Grid.Column="2" >
+                    <Button CornerRadius="10">
+                        <Image Source="/Assets/printer.png"></Image>
+                    </Button>
+                </Grid>
+                <Grid Grid.Column="3" >
+                    <Button CornerRadius="10">
+                        <Image Source="/Assets/WirelessPrinter.png"></Image>
+                    </Button>
+                </Grid>
+            </Grid>
+            <Grid Grid.Row="2" ColumnDefinitions="*,*,*,*">
+                <Grid Grid.Column="0" >
+                    <Button CornerRadius="10">
+                        <Image Source="/Assets/server.png"></Image>
+                    </Button>
+                </Grid>
+                
+            </Grid>
+        
+        
+        </Grid>
+    </Grid>
+        <!-- Background="#27292d" -->
+    <Grid  Grid.Column="1">
+        <TextBlock FontSize="15" Margin="6" ZIndex="2" Foreground="AliceBlue" VerticalAlignment="Top" HorizontalAlignment="Left" Text="R - Reset zoom" ></TextBlock>
+        <!-- <ItemsControl Items="{Binding Items}"> -->
+        <!--     <ItemsControl.ItemsPanel> -->
+        <!--         <ItemsPanelTemplate> -->
+        <!--             <Canvas Width="700" Height="700" Background="LightGray"  /> -->
+        <!--         </ItemsPanelTemplate> -->
+        <!--     </ItemsControl.ItemsPanel> -->
+        <!--     <ItemsControl.Styles> -->
+        <!--         <Style Selector="ItemsControl ContentPresenter"> -->
+        <!--             ~1~ <Setter Property="Canvas.Left" Value="{Binding X}" /> @1@ -->
+        <!--             ~1~ <Setter Property="Canvas.Top" Value="{Binding Y}" /> @1@ -->
+        <!--         </Style> -->
+        <!--     </ItemsControl.Styles> -->
+        <!--     <ItemsControl.DataTemplates> -->
+        <!--         <DataTemplate DataType="{x:Type vm:Item}"> -->
+        <!--             <Button Width="{Binding Size}"  -->
+        <!--                     Height="{Binding Size}" -->
+        <!--                     VerticalContentAlignment="Center" -->
+        <!--                     HorizontalContentAlignment="Center"> -->
+        <!--             </Button> -->
+        <!--         </DataTemplate> -->
+        <!--     </ItemsControl.DataTemplates> -->
+        <!-- </ItemsControl> -->
+        <paz:ZoomBorder Name="ZoomBorder"
+                        Stretch="Uniform" 
+                        ZoomSpeed="1.1"
+                        Background="#27292d" 
+                        ClipToBounds="True" 
+                        Focusable="True" VerticalAlignment="Stretch"
+                        HorizontalAlignment="Stretch">
+            <!-- <Canvas Width="600" Height="600" Background="DimGray"></Canvas> -->
+            <ItemsControl ItemsSource="{Binding Items}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <Canvas Background="DimGray" Width="600" Height="600" />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.Styles>
+                    <Style Selector="ItemsControl ContentPresenter">
+                        <Setter Property="Canvas.Top" Value="{Binding Y}"></Setter>
+                        <Setter Property="Canvas.Left" Value="{Binding X}"></Setter>
+                        <!-- <Setter Property="Canvas.Left" Value="{Binding X}"></Setter> -->
+                        <!-- <Setter Property="Canvas.Top" Value="{Binding Y}"></Setter> -->
+                    </Style>
+                </ItemsControl.Styles>
+                <ItemsControl.DataTemplates>
+                    <DataTemplate DataType="vm:Item">
+                        <Button HorizontalAlignment="Center" VerticalAlignment="Center" Width="{Binding Size}" Height="{Binding Size}">
+                            <Image Source="{Binding Url}"></Image>
+                        </Button>
+                    </DataTemplate>
+                </ItemsControl.DataTemplates>
+            </ItemsControl>
+        </paz:ZoomBorder>
+        
+    </Grid>     
+</Grid>
+
+</Window>
+<!-- <paz:ZoomBorder Name="ZoomBorder" Stretch="Uniform" ZoomSpeed="1.1"     -->
+<!--                 Background="#27292d" ClipToBounds="True" Focusable="True" -->
+<!--                 VerticalAlignment="Stretch" HorizontalAlignment="Stretch"> -->
+<!--      -->
+<!--      -->
+<!--     ~1~ <ItemsControl Items="{Binding Items}"> @1@ -->
+<!--     ~1~    <ItemsControl.ItemsPanel> @1@ -->
+<!--     ~1~         <ItemsPanelTemplate> @1@ -->
+<!--     ~1~             <Canvas Width="700" Height="700" Background="LightGray"  /> @1@ -->
+<!--     ~1~         </ItemsPanelTemplate> @1@ -->
+<!--     ~1~     </ItemsControl.ItemsPanel> @1@ -->
+<!--     ~1~     <ItemsControl.Styles> @1@ -->
+<!--     ~1~         <Style Selector="ItemsControl ContentPresenter"> @1@ -->
+<!--     ~1~             <Setter Property="Canvas.Left" Value="{Binding X}" /> @1@ -->
+<!--     ~1~             <Setter Property="Canvas.Top" Value="{Binding Y}" /> @1@ -->
+<!--     ~1~         </Style> @1@ -->
+<!--     ~1~     </ItemsControl.Styles> @1@ -->
+<!--     ~1~     <ItemsControl.DataTemplates> @1@ -->
+<!--     ~1~         <DataTemplate DataType="{x:Type vm:Item}"> @1@ -->
+<!--     ~1~                 <Button></Button> @1@ -->
+<!--     ~1~         </DataTemplate> @1@ -->
+<!--     ~1~     </ItemsControl.DataTemplates> @1@ -->
+<!--     ~1~ </ItemsControl> @1@ -->
+<!-- </paz:ZoomBorder>   -->
