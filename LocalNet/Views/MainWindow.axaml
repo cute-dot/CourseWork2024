@@ -3,25 +3,40 @@
         xmlns:vm="using:LocalNet.ViewModels"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:ext="clr-namespace:LocalNet.Converter;assembly=LocalNet.Converter"
+        xmlns:i="clr-namespace:Avalonia.Xaml.Interactivity;assembly=Avalonia.Xaml.Interactivity"
+        xmlns:id="clr-namespace:Avalonia.Xaml.Interactions.Draggable;assembly=Avalonia.Xaml.Interactions.Draggable"
         xmlns:paz="using:Avalonia.Controls.PanAndZoom"
+        xmlns:converter="clr-namespace:LocalNet.Converter"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:CompileBindings="False"
         x:Class="LocalNet.Views.MainWindow"
         x:DataType="vm:MainWindowViewModel"
         Icon="\Assets\free-icon-personal-growth-12670454.png"
         Title="LocalNet">
+    
 
-    <Design.DataContext>
-        <!-- This only sets the DataContext for the previewer in an IDE,
-             to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
-        <vm:MainWindowViewModel/>
-    </Design.DataContext>
+    <Design.DataContext> 
+         <!-- This only sets the DataContext for the previewer in an IDE, -->
+              to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) --> -->
+         <vm:MainWindowViewModel/> 
+    </Design.DataContext> 
+    <!-- <UserControl.Resources> -->
+    <!--     <converter:BitmapConverter x:Key="variableImage"/> -->
+    <!-- </UserControl.Resources> -->
+    <Window.Styles>
+    <StyleInclude Source="avares://Avalonia.Xaml.Interactions.Draggable/Styles.axaml"/>
+    <StyleInclude Source="/Styles/Styles.axaml"/>
+  </Window.Styles>
+    <Window.Resources>
+        <converter:BitmapConverter x:Key="VariableImage"/>
+    </Window.Resources>
 
     <Grid ZIndex="10"  ColumnDefinitions="*, 3.5*">
     <Grid Background="#32363f" >
         
         
-        <Grid Margin="15 10 15 0" RowDefinitions="Auto,Auto,Auto" >
+        <Grid Margin="15 10 15 0" RowDefinitions="Auto,Auto,Auto">
         
             <Grid Margin="0 0 0 5" ColumnDefinitions="*,*,*,*">
                 <Grid Grid.Column="0" >
@@ -78,35 +93,24 @@
                 </Grid>
                 
             </Grid>
-        
-        
+            
         </Grid>
+        
+        <Grid>
+            <Button HorizontalAlignment="Left" Width="50" Height="50" Command="{Binding CreateSave}" Content="Save"></Button>
+            <Button HorizontalAlignment="Right" Width="50" Height="50" Command="{Binding CreateLoad}" Content="Load"></Button>
+        </Grid>
+        
+        
     </Grid>
         <!-- Background="#27292d" -->
     <Grid  Grid.Column="1">
-        <TextBlock FontSize="15" Margin="6" ZIndex="2" Foreground="AliceBlue" VerticalAlignment="Top" HorizontalAlignment="Left" Text="R - Reset zoom" ></TextBlock>
-        <!-- <ItemsControl Items="{Binding Items}"> -->
-        <!--     <ItemsControl.ItemsPanel> -->
-        <!--         <ItemsPanelTemplate> -->
-        <!--             <Canvas Width="700" Height="700" Background="LightGray"  /> -->
-        <!--         </ItemsPanelTemplate> -->
-        <!--     </ItemsControl.ItemsPanel> -->
-        <!--     <ItemsControl.Styles> -->
-        <!--         <Style Selector="ItemsControl ContentPresenter"> -->
-        <!--             ~1~ <Setter Property="Canvas.Left" Value="{Binding X}" /> @1@ -->
-        <!--             ~1~ <Setter Property="Canvas.Top" Value="{Binding Y}" /> @1@ -->
-        <!--         </Style> -->
-        <!--     </ItemsControl.Styles> -->
-        <!--     <ItemsControl.DataTemplates> -->
-        <!--         <DataTemplate DataType="{x:Type vm:Item}"> -->
-        <!--             <Button Width="{Binding Size}"  -->
-        <!--                     Height="{Binding Size}" -->
-        <!--                     VerticalContentAlignment="Center" -->
-        <!--                     HorizontalContentAlignment="Center"> -->
-        <!--             </Button> -->
-        <!--         </DataTemplate> -->
-        <!--     </ItemsControl.DataTemplates> -->
-        <!-- </ItemsControl> -->
+        <TextBlock FontSize="15" Margin="15" ZIndex="2" Foreground="AliceBlue" VerticalAlignment="Top" HorizontalAlignment="Left" Text="R - Reset zoom" ></TextBlock>
+        <TextBlock x:Name="BlockX" FontSize="15" Margin="20 6 6 6 " ZIndex="2" Foreground="AliceBlue" VerticalAlignment="Bottom" HorizontalAlignment="Left" Text="{Binding MouseX}"></TextBlock>
+        <TextBlock  FontSize="15" Margin="5 6 6 6" ZIndex="2" Foreground="AliceBlue" VerticalAlignment="Bottom" HorizontalAlignment="Left" Text="x:"></TextBlock>
+        <TextBlock x:Name="BlockY" FontSize="15" Margin="65 6 6 6" ZIndex="2" Foreground="AliceBlue" VerticalAlignment="Bottom" HorizontalAlignment="Left" Text="{Binding MouseY}"></TextBlock>
+        <TextBlock  FontSize="15" Margin="50 6 6 6" ZIndex="2" Foreground="AliceBlue" VerticalAlignment="Bottom" HorizontalAlignment="Left" Text="y:"></TextBlock>
+        
         <paz:ZoomBorder Name="ZoomBorder"
                         Stretch="Uniform" 
                         ZoomSpeed="1.1"
@@ -114,25 +118,27 @@
                         ClipToBounds="True" 
                         Focusable="True" VerticalAlignment="Stretch"
                         HorizontalAlignment="Stretch">
-            <!-- <Canvas Width="600" Height="600" Background="DimGray"></Canvas> -->
-            <ItemsControl ItemsSource="{Binding Items}">
+            <ItemsControl  Classes="draggable"  ItemsSource="{Binding Items}">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
-                        <Canvas Background="DimGray" Width="600" Height="600" />
+                        <Canvas ClipToBounds="True" x:Name="MCanvas" Background="DimGray" Width="600" Height="600" />
                     </ItemsPanelTemplate>
                 </ItemsControl.ItemsPanel>
                 <ItemsControl.Styles>
                     <Style Selector="ItemsControl ContentPresenter">
-                        <Setter Property="Canvas.Top" Value="{Binding Y}"></Setter>
-                        <Setter Property="Canvas.Left" Value="{Binding X}"></Setter>
-                        <!-- <Setter Property="Canvas.Left" Value="{Binding X}"></Setter> -->
-                        <!-- <Setter Property="Canvas.Top" Value="{Binding Y}"></Setter> -->
+                        <Setter Property="Canvas.Top" Value="{Binding Y, Mode=TwoWay}"></Setter>
+                        <Setter Property="Canvas.Left" Value="{Binding X, Mode=TwoWay}"></Setter>
+                  
+                    </Style>
+                    <Style Selector="ItemsControl > ContentPresenter:dragging">
+                        <Setter Property="Opacity" Value="0.5" />
+                        <Setter Property="ZIndex" Value="1" />
                     </Style>
                 </ItemsControl.Styles>
                 <ItemsControl.DataTemplates>
                     <DataTemplate DataType="vm:Item">
-                        <Button HorizontalAlignment="Center" VerticalAlignment="Center" Width="{Binding Size}" Height="{Binding Size}">
-                            <Image Source="{Binding Url}"></Image>
+                        <Button x:Name="butt"  HorizontalAlignment="Center" VerticalAlignment="Center" Width="{Binding Size}" Height="{Binding Size}">
+                            <Image Width="50" Height="50" Source="{Binding Url, Converter={StaticResource VariableImage}}"></Image>
                         </Button>
                     </DataTemplate>
                 </ItemsControl.DataTemplates>
@@ -143,27 +149,3 @@
 </Grid>
 
 </Window>
-<!-- <paz:ZoomBorder Name="ZoomBorder" Stretch="Uniform" ZoomSpeed="1.1"     -->
-<!--                 Background="#27292d" ClipToBounds="True" Focusable="True" -->
-<!--                 VerticalAlignment="Stretch" HorizontalAlignment="Stretch"> -->
-<!--      -->
-<!--      -->
-<!--     ~1~ <ItemsControl Items="{Binding Items}"> @1@ -->
-<!--     ~1~    <ItemsControl.ItemsPanel> @1@ -->
-<!--     ~1~         <ItemsPanelTemplate> @1@ -->
-<!--     ~1~             <Canvas Width="700" Height="700" Background="LightGray"  /> @1@ -->
-<!--     ~1~         </ItemsPanelTemplate> @1@ -->
-<!--     ~1~     </ItemsControl.ItemsPanel> @1@ -->
-<!--     ~1~     <ItemsControl.Styles> @1@ -->
-<!--     ~1~         <Style Selector="ItemsControl ContentPresenter"> @1@ -->
-<!--     ~1~             <Setter Property="Canvas.Left" Value="{Binding X}" /> @1@ -->
-<!--     ~1~             <Setter Property="Canvas.Top" Value="{Binding Y}" /> @1@ -->
-<!--     ~1~         </Style> @1@ -->
-<!--     ~1~     </ItemsControl.Styles> @1@ -->
-<!--     ~1~     <ItemsControl.DataTemplates> @1@ -->
-<!--     ~1~         <DataTemplate DataType="{x:Type vm:Item}"> @1@ -->
-<!--     ~1~                 <Button></Button> @1@ -->
-<!--     ~1~         </DataTemplate> @1@ -->
-<!--     ~1~     </ItemsControl.DataTemplates> @1@ -->
-<!--     ~1~ </ItemsControl> @1@ -->
-<!-- </paz:ZoomBorder>   -->

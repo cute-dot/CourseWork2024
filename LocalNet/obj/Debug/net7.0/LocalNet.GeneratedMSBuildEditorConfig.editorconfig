@@ -18,5 +18,8 @@ build_property.ProjectDir = C:\Users\sasha\RiderProjects\CourseWork2024\LocalNet
 [C:/Users/sasha/RiderProjects/CourseWork2024/LocalNet/App.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
+[C:/Users/sasha/RiderProjects/CourseWork2024/LocalNet/Styles/Styles.axaml]
+build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
+
 [C:/Users/sasha/RiderProjects/CourseWork2024/LocalNet/Views/MainWindow.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml

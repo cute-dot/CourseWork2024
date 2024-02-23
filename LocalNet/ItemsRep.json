@@ -1,0 +1,44 @@
+[
+  {
+    "Id": 0,
+    "X": -196.6468820435743,
+    "Y": 75.63035311795682,
+    "Size": 50,
+    "Url": "/Assets/technology-integration.png"
+  },
+  {
+    "Id": 0,
+    "X": -319.55822689706633,
+    "Y": 218.62359128474793,
+    "Size": 50,
+    "Url": "/Assets/technology-integration.png"
+  },
+  {
+    "Id": 0,
+    "X": -360.2967693463537,
+    "Y": 291.5251690458309,
+    "Size": 50,
+    "Url": "/Assets/technology-integration.png"
+  },
+  {
+    "Id": 0,
+    "X": 275.0,
+    "Y": 275.0,
+    "Size": 50,
+    "Url": "C:/Users/sasha/RiderProjects/CourseWork2024/LocalNet/Assets/technology-integration.png"
+  },
+  {
+    "Id": 0,
+    "X": 341.11570247933855,
+    "Y": 140.51465063861832,
+    "Size": 50,
+    "Url": "C:/Users/sasha/RiderProjects/CourseWork2024/LocalNet/Assets/technology-integration.png"
+  },
+  {
+    "Id": 0,
+    "X": 169.81592787377963,
+    "Y": 136.75807663411047,
+    "Size": 50,
+    "Url": "C:/Users/sasha/RiderProjects/CourseWork2024/LocalNet/Assets/technology-integration.png"
+  }
+]

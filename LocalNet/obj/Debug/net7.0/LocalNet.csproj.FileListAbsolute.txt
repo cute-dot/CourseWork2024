@@ -138,3 +138,12 @@ C:\Users\sasha\RiderProjects\CourseWork2024\LocalNet\bin\Debug\net7.0\Avalonia.C
 C:\Users\sasha\RiderProjects\CourseWork2024\LocalNet\bin\Debug\net7.0\System.Text.Encodings.Web.dll
 C:\Users\sasha\RiderProjects\CourseWork2024\LocalNet\bin\Debug\net7.0\System.Text.Json.dll
 C:\Users\sasha\RiderProjects\CourseWork2024\LocalNet\bin\Debug\net7.0\runtimes\browser\lib\net7.0\System.Text.Encodings.Web.dll
+C:\Users\sasha\RiderProjects\CourseWork2024\LocalNet\bin\Debug\net7.0\Avalonia.Xaml.Interactions.dll
+C:\Users\sasha\RiderProjects\CourseWork2024\LocalNet\bin\Debug\net7.0\Avalonia.Xaml.Interactions.Custom.dll
+C:\Users\sasha\RiderProjects\CourseWork2024\LocalNet\bin\Debug\net7.0\Avalonia.Xaml.Interactions.DragAndDrop.dll
+C:\Users\sasha\RiderProjects\CourseWork2024\LocalNet\bin\Debug\net7.0\Avalonia.Xaml.Interactions.Draggable.dll
+C:\Users\sasha\RiderProjects\CourseWork2024\LocalNet\bin\Debug\net7.0\Avalonia.Xaml.Interactions.Events.dll
+C:\Users\sasha\RiderProjects\CourseWork2024\LocalNet\bin\Debug\net7.0\Avalonia.Xaml.Interactions.Reactive.dll
+C:\Users\sasha\RiderProjects\CourseWork2024\LocalNet\bin\Debug\net7.0\Avalonia.Xaml.Interactions.Responsive.dll
+C:\Users\sasha\RiderProjects\CourseWork2024\LocalNet\bin\Debug\net7.0\Avalonia.Xaml.Interactivity.dll
+C:\Users\sasha\RiderProjects\CourseWork2024\LocalNet\bin\Debug\net7.0\Newtonsoft.Json.dll
