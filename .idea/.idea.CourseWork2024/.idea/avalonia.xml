@@ -6,6 +6,7 @@
         <entry key="LocalNet/Styles/Styles.axaml" value="LocalNet/LocalNet.csproj" />
         <entry key="LocalNet/Styles/TemplatedControl1.axaml" value="LocalNet/LocalNet.csproj" />
         <entry key="LocalNet/Styles1.axaml" value="LocalNet/LocalNet.csproj" />
+        <entry key="LocalNet/Views/ErrorWindow.axaml" value="LocalNet/LocalNet.csproj" />
         <entry key="LocalNet/Views/MainWindow.axaml" value="LocalNet/LocalNet.csproj" />
       </map>
     </option>

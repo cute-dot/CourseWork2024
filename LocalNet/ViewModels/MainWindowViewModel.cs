@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Drawing;
 using System.Globalization;
+using System.Linq;
 using System.Reactive;
 using System.Reactive.Disposables;
 using System.Reactive.Linq;
@@ -14,6 +15,7 @@ using Avalonia.Media.Imaging;
 using Avalonia.Platform;
 using DynamicData.Binding;
 using LocalNet.Models;
+using LocalNet.Views;
 using ReactiveUI;
 using Bitmap = Avalonia.Media.Imaging.Bitmap;
 
@@ -29,37 +31,84 @@ namespace LocalNet.ViewModels
             get => _items;
             // set => this.RaiseAndSetIfChanged(ref _items, value);
         }
-        private string mouseX;
-        private string mouseY;
-
-        public string MouseX
-        {
-            get => mouseX;
-            set => this.RaiseAndSetIfChanged(ref mouseX, value);
-        }
-
-        public string MouseY
-        {
-            get => mouseY;
-            set => this.RaiseAndSetIfChanged(ref mouseY, value);
-        }
-
         public MainWindowViewModel()
         {
             CreateButton = ReactiveCommand.Create(AddButton);
             CreateLoad = ReactiveCommand.Create(Load);
             CreateSave = ReactiveCommand.Create(Save);
-            // CreateSave.Execute(Unit.Default).Subscribe().Dispose();
+            CreateCommutator = ReactiveCommand.Create(AddCommutator);
+            CreatePC = ReactiveCommand.Create(AddPC);
+            CreateLaptop = ReactiveCommand.Create(AddLaptop);
+            CreateWrRouter = ReactiveCommand.Create(AddWrRouter);
+            CreatePhone = ReactiveCommand.Create(AddPhone);
+            CreatePrinter = ReactiveCommand.Create(AddPrinter);
+            CreateWrPrinter = ReactiveCommand.Create(AddWrPrinter);
+            CreateServer = ReactiveCommand.Create(AddServer);
         }
 
         public ReactiveCommand<Unit, Unit> CreateSave { get; }
-
         public ReactiveCommand<Unit, Unit> CreateButton { get; }
-        
+        public ReactiveCommand<Unit, Unit> CreateCommutator { get; }
+        public ReactiveCommand<Unit,Unit> CreatePC { get; }
         public ReactiveCommand<Unit, Unit> CreateLoad { get; }
+        public ReactiveCommand<Unit, Unit> CreatePhone { get; }
+        public ReactiveCommand<Unit, Unit> CreateWrRouter { get; }
+        public ReactiveCommand<Unit, Unit> CreateLaptop { get; }
+        public ReactiveCommand<Unit, Unit> CreatePrinter { get; }
+        public ReactiveCommand<Unit, Unit> CreateWrPrinter { get; }
+        public ReactiveCommand<Unit, Unit> CreateServer { get; }
         public void AddButton()
         {
-            var itemButt = new Item(0,275, 275, 50, "C:/Users/sasha/RiderProjects/CourseWork2024/LocalNet/Assets/technology-integration.png");
+            var count = (from item in Items where item.Id == 0 select item).Count();
+            if (count == 0)
+            {
+                var itemButt = new Item(0,275, 275, 50, "C:/Users/sasha/RiderProjects/CourseWork2024/LocalNet/Assets/technology-integration.png");
+                Items.Add(itemButt);
+            }
+            else
+            {
+                var window = new ErrorWindow();
+                window.Show();
+            }
+        }
+        public void AddLaptop()
+        {
+            var itemButt = new Item(4,275, 275, 50, "C:/Users/sasha/RiderProjects/CourseWork2024/LocalNet/Assets/laptop.png");
+            Items.Add(itemButt);
+        }
+        public void AddPhone()
+        {
+            var itemButt = new Item(4,275, 275, 50, "C:/Users/sasha/RiderProjects/CourseWork2024/LocalNet/Assets/iphone.png");
+            Items.Add(itemButt);
+        }
+        public void AddWrRouter()
+        {
+            var itemButt = new Item(3,275, 275, 50, "C:/Users/sasha/RiderProjects/CourseWork2024/LocalNet/Assets/wireless-router.png");
+            Items.Add(itemButt);
+        }
+        public void AddPrinter()
+        {
+            var itemButt = new Item(2,275, 275, 50, "C:/Users/sasha/RiderProjects/CourseWork2024/LocalNet/Assets/printer.png");
+            Items.Add(itemButt);
+        }
+        public void AddWrPrinter()
+        {
+            var itemButt = new Item(4,275, 275, 50, "C:/Users/sasha/RiderProjects/CourseWork2024/LocalNet/Assets/WirelessPrinter.png");
+            Items.Add(itemButt);
+        }
+        public void AddServer()
+        {
+            var itemButt = new Item(5,275, 275, 50, "C:/Users/sasha/RiderProjects/CourseWork2024/LocalNet/Assets/server.png");
+            Items.Add(itemButt);
+        }
+        public void AddPC()
+        {
+            var itemButt = new Item(2,275, 275, 50, "C:/Users/sasha/RiderProjects/CourseWork2024/LocalNet/Assets/PC.png");
+            Items.Add(itemButt);
+        }
+        public void AddCommutator()
+        {
+            var itemButt = new Item(1,275, 275, 50, "C:/Users/sasha/RiderProjects/CourseWork2024/LocalNet/Assets/Commutator.png");
             Items.Add(itemButt);
         }
 

@@ -9,6 +9,7 @@
         xmlns:paz="using:Avalonia.Controls.PanAndZoom"
         xmlns:converter="clr-namespace:LocalNet.Converter"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        WindowStartupLocation="CenterScreen"
         x:CompileBindings="False"
         x:Class="LocalNet.Views.MainWindow"
         x:DataType="vm:MainWindowViewModel"
@@ -39,57 +40,100 @@
         <Grid Margin="15 10 15 0" RowDefinitions="Auto,Auto,Auto">
         
             <Grid Margin="0 0 0 5" ColumnDefinitions="*,*,*,*">
-                <Grid Grid.Column="0" >
-        
-                    <Button Command="{Binding CreateButton}" CornerRadius="10">
-                        <Image Source="/Assets/technology-integration.png"></Image>
-        
-                    </Button>
-        
+                <Grid Grid.Column="0" RowDefinitions="Auto, Auto" >
+                    <Grid >
+                        <Button Command="{Binding CreateButton}" CornerRadius="10">
+                            <Image Source="/Assets/technology-integration.png"></Image>
+                        </Button>
+                    </Grid>
+                    <Grid Grid.Row="1">
+                        <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="10" Text="Router"></TextBlock>
+                    </Grid>
                 </Grid>
-                <Grid Grid.Column="1" >
-                    <Button CornerRadius="10">
-                        <Image Source="/Assets/Commutator.png"></Image>
-                    </Button>
+                <Grid Grid.Column="1" RowDefinitions="Auto, Auto" >
+                    <Grid >
+                        <Button Command="{Binding CreateCommutator}"  CornerRadius="10">
+                            <Image Source="/Assets/Commutator.png"></Image>
+                        </Button>
+                    </Grid>
+                    <Grid Grid.Row="1" >
+                        <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="10" Text="Commutator"></TextBlock>
+                    </Grid>
                 </Grid>
-                <Grid Grid.Column="2" >
-                    <Button CornerRadius="10">
-                        <Image Source="/Assets/PC.png"></Image>
-                    </Button>
+                <Grid Grid.Column="2" RowDefinitions="Auto, Auto" >
+                    <Grid>
+                        <Button Command="{Binding CreatePC}" CornerRadius="10">
+                            <Image Source="/Assets/PC.png"></Image>
+                        </Button>
+                    </Grid>
+                    <Grid Grid.Row="1"  >
+                        <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="10" Text="PC"></TextBlock>
+                    </Grid>
                 </Grid>
-                <Grid Grid.Column="3" >
-                    <Button CornerRadius="10">
-                        <Image Source="/Assets/wireless-router.png"></Image>
-                    </Button>
+                <Grid Grid.Column="3" RowDefinitions="Auto, Auto">
+                    <Grid>
+                        <Button Command="{Binding CreateWrRouter}"  CornerRadius="10">
+                            <Image Source="/Assets/wireless-router.png"></Image>
+                        </Button>
+                    </Grid>
+                    <Grid Grid.Row="1" >
+                        <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="10" Text="Wireless router"></TextBlock>
+                    </Grid>
                 </Grid>
             </Grid>
             <Grid Grid.Row="1" ColumnDefinitions="*,*,*,*">
-                <Grid Grid.Column="0" >
-                    <Button CornerRadius="10">
-                        <Image Source="/Assets/laptop.png"></Image>
-                    </Button>
+                <Grid Grid.Column="0" RowDefinitions="Auto, Auto" >
+                    <Grid>
+                        <Button Command="{Binding CreateLaptop}" CornerRadius="10">
+                            <Image Source="/Assets/laptop.png"></Image>
+                        </Button>
+                    </Grid>
+                    <Grid Grid.Row="1" >
+                        <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="10" Text="Laptop"></TextBlock>
+                    </Grid>
                 </Grid>
-                <Grid   Grid.Column="1" >
-                    <Button CornerRadius="10">
-                        <Image Source="/Assets/iphone.png"></Image>
-                    </Button>
+                <Grid Grid.Column="1" RowDefinitions="Auto, Auto" >
+                    <Grid>
+                        <Button Command="{Binding CreatePhone}" CornerRadius="10">
+                            <Image Source="/Assets/iphone.png"></Image>
+                        </Button>
+                    </Grid>
+                    <Grid Grid.Row="1" >
+                        <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="10" Text="Phone"></TextBlock>
+                    </Grid>
                 </Grid>
-                <Grid Grid.Column="2" >
-                    <Button CornerRadius="10">
-                        <Image Source="/Assets/printer.png"></Image>
-                    </Button>
+                <Grid Grid.Column="2" RowDefinitions="Auto, Auto" >
+                    <Grid>
+                        <Button Command="{Binding CreatePrinter}" CornerRadius="10">
+                            <Image Source="/Assets/printer.png"></Image>
+                        </Button>
+                    </Grid>
+                    <Grid Grid.Row="1" >
+                        <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="10" Text="Printer"></TextBlock>
+                    </Grid>
                 </Grid>
-                <Grid Grid.Column="3" >
-                    <Button CornerRadius="10">
-                        <Image Source="/Assets/WirelessPrinter.png"></Image>
-                    </Button>
+                <Grid Grid.Column="3" RowDefinitions="Auto, Auto" >
+                    <Grid>
+                        <Button Command="{Binding CreateWrPrinter}" CornerRadius="10">
+                            <Image Source="/Assets/WirelessPrinter.png"></Image>
+                        </Button>
+                    </Grid>
+                    <Grid Grid.Row="1" >
+                        <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="10" Text="Wireless printer"></TextBlock>
+                    </Grid>
                 </Grid>
             </Grid>
             <Grid Grid.Row="2" ColumnDefinitions="*,*,*,*">
-                <Grid Grid.Column="0" >
-                    <Button CornerRadius="10">
-                        <Image Source="/Assets/server.png"></Image>
-                    </Button>
+                <Grid Grid.Column="0" RowDefinitions="Auto, Auto">
+                    <Grid>
+                        <Button Command="{Binding CreateServer}" CornerRadius="10">
+                            <Image  Source="/Assets/server.png"></Image>
+                        </Button>
+                    </Grid>
+                    <Grid Grid.Row="1" >
+                        <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="10" Text="Server"></TextBlock>
+                    </Grid>
+                    
                 </Grid>
                 
             </Grid>
@@ -105,11 +149,11 @@
     </Grid>
         <!-- Background="#27292d" -->
     <Grid  Grid.Column="1">
-        <TextBlock FontSize="15" Margin="15" ZIndex="2" Foreground="AliceBlue" VerticalAlignment="Top" HorizontalAlignment="Left" Text="R - Reset zoom" ></TextBlock>
-        <TextBlock x:Name="BlockX" FontSize="15" Margin="20 6 6 6 " ZIndex="2" Foreground="AliceBlue" VerticalAlignment="Bottom" HorizontalAlignment="Left" Text="{Binding MouseX}"></TextBlock>
-        <TextBlock  FontSize="15" Margin="5 6 6 6" ZIndex="2" Foreground="AliceBlue" VerticalAlignment="Bottom" HorizontalAlignment="Left" Text="x:"></TextBlock>
-        <TextBlock x:Name="BlockY" FontSize="15" Margin="65 6 6 6" ZIndex="2" Foreground="AliceBlue" VerticalAlignment="Bottom" HorizontalAlignment="Left" Text="{Binding MouseY}"></TextBlock>
-        <TextBlock  FontSize="15" Margin="50 6 6 6" ZIndex="2" Foreground="AliceBlue" VerticalAlignment="Bottom" HorizontalAlignment="Left" Text="y:"></TextBlock>
+        <!-- <TextBlock FontSize="15" Margin="15" ZIndex="2" Foreground="AliceBlue" VerticalAlignment="Top" HorizontalAlignment="Left" Text="R - Reset zoom" ></TextBlock> -->
+        <!-- <TextBlock x:Name="BlockX" FontSize="15" Margin="20 6 6 6 " ZIndex="2" Foreground="AliceBlue" VerticalAlignment="Bottom" HorizontalAlignment="Left" Text="{Binding MouseX}"></TextBlock> -->
+        <!-- <TextBlock  FontSize="15" Margin="5 6 6 6" ZIndex="2" Foreground="AliceBlue" VerticalAlignment="Bottom" HorizontalAlignment="Left" Text="x:"></TextBlock> -->
+        <!-- <TextBlock x:Name="BlockY" FontSize="15" Margin="65 6 6 6" ZIndex="2" Foreground="AliceBlue" VerticalAlignment="Bottom" HorizontalAlignment="Left" Text="{Binding MouseY}"></TextBlock> -->
+        <!-- <TextBlock  FontSize="15" Margin="50 6 6 6" ZIndex="2" Foreground="AliceBlue" VerticalAlignment="Bottom" HorizontalAlignment="Left" Text="y:"></TextBlock> -->
         
         <paz:ZoomBorder Name="ZoomBorder"
                         Stretch="Uniform" 
@@ -118,10 +162,10 @@
                         ClipToBounds="True" 
                         Focusable="True" VerticalAlignment="Stretch"
                         HorizontalAlignment="Stretch">
-            <ItemsControl  Classes="draggable"  ItemsSource="{Binding Items}">
+            <ItemsControl Classes="draggable"  ItemsSource="{Binding Items}">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
-                        <Canvas ClipToBounds="True" x:Name="MCanvas" Background="DimGray" Width="600" Height="600" />
+                        <Canvas  ClipToBounds="True" x:Name="MCanvas" Background="DimGray" Width="600" Height="600" />
                     </ItemsPanelTemplate>
                 </ItemsControl.ItemsPanel>
                 <ItemsControl.Styles>
@@ -137,7 +181,7 @@
                 </ItemsControl.Styles>
                 <ItemsControl.DataTemplates>
                     <DataTemplate DataType="vm:Item">
-                        <Button x:Name="butt"  HorizontalAlignment="Center" VerticalAlignment="Center" Width="{Binding Size}" Height="{Binding Size}">
+                        <Button Background="DimGray" x:Name="butt"  HorizontalAlignment="Center" VerticalAlignment="Center" Width="{Binding Size}" Height="{Binding Size}">
                             <Image Width="50" Height="50" Source="{Binding Url, Converter={StaticResource VariableImage}}"></Image>
                         </Button>
                     </DataTemplate>
