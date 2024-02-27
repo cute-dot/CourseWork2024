@@ -10,7 +10,7 @@ public class ItemModel
     private int _size;
     private string _url;
 
-
+    
     public int Id
     {
         get => _id;
