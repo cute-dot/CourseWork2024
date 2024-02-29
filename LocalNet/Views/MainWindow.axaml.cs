@@ -1,41 +1,17 @@
 using System;
-using System.Globalization;
-using System.Runtime.Versioning;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.PanAndZoom;
-using Avalonia.Controls.Presenters;
-using Avalonia.Controls.Primitives;
-using Avalonia.Controls.Shapes;
-using Avalonia.Data.Converters;
 using Avalonia.Input;
 using Avalonia.Interactivity;
-using Avalonia.Markup.Xaml;
-using Avalonia.Media;
-using Avalonia.Media.Imaging;
-using Avalonia.Platform;
-using Avalonia.ReactiveUI;
-using Avalonia.Skia;
-using DynamicData;
 using LocalNet.ViewModels;
-using ReactiveUI;
-using SkiaSharp;
-using Splat;
-using MouseButton = Avalonia.Remote.Protocol.Input.MouseButton;
-
 namespace LocalNet.Views;
 
 public partial class MainWindow :  Window
 {
     
     private readonly ZoomBorder? _zoomBorder;
-    public double startPosX;
-    public double startPosY;
-    public Point startPos;
-    public double relativeMouseX;
-    public double relativeMouseY;
-    public bool isdrugging = false;
-    public int itemID;
+    
     public MainWindow()
     {
         InitializeComponent();
@@ -53,29 +29,74 @@ public partial class MainWindow :  Window
         {
             _zoomBorder?.ResetMatrix();
         }
-        
     }
-        
-    private void Button_OnClick(object? sender, RoutedEventArgs e)
-    {
-        isdrugging = true; 
-        
-        Console.WriteLine(isdrugging);
-    }
-
+   
     private void MCanvas_OnPointerMoved(object? sender, PointerEventArgs e)
     {
-        if (isdrugging)
+        if (sender is Canvas)
         {
-            
+            var data = (MainWindowViewModel)DataContext;
+            Point point = e.GetPosition(MCanvas);
+            var pointX = Math.Round(((point.X - data.CanvasH)/ data.CanvasH), 1).ToString();
+            var pointY = Math.Round(-((point.Y - data.CanvasH))/ data.CanvasH, 1).ToString();
+            data.MouseX = pointX;
+            data.MouseY = pointY;
         }
-
     }
 
-    private void InputElement_OnPointerPressed(object? sender, PointerPressedEventArgs e)
+    private void Button_OnClickTop(object? sender, RoutedEventArgs e)
     {
-        startPos = e.GetPosition(this);
-        Console.WriteLine(startPos.X);
-        Console.WriteLine(startPos.Y);
+        var button = e.Source as Control;
+        var data = (Item)button.DataContext;
+        data.Height += 20;
+        data.Width += 20;
+    }
+
+    private void Button_OnClickRight(object? sender, RoutedEventArgs e)
+    {
+        var button = e.Source as Control;
+        var data = (Item)button.DataContext;
+        data.Height -= 20;
+        data.Width -= 20;
+    }
+
+    private void Button1_OnPointerPressed(object? sender, PointerPressedEventArgs e)
+    {
+        var arrowButt = e.Source as Control;
+        var data = (Item)arrowButt.DataContext;
+        if (e.GetCurrentPoint(arrowButt).Properties.IsRightButtonPressed)
+        {
+            if (data.Id == 10)
+            {
+                string getUrl = data.Url;
+                getUrl = getUrl.Substring(73, getUrl.Length-77);
+                Console.WriteLine(data.Url);
+                Console.WriteLine(getUrl);
+                switch (getUrl)
+                {
+                    case "right":
+                    {
+                        data.Url = "C:/Users/sasha/RiderProjects/CourseWork2024/LocalNet/Assets/Arrows/arrow-left.png";
+                        return;
+                    }
+                    case "left":
+                    {
+                        data.Url = "C:/Users/sasha/RiderProjects/CourseWork2024/LocalNet/Assets/Arrows/arrow-up-left.png";
+                        return;
+                    }
+                    case "up-left":
+                    {
+                        data.Url = "C:/Users/sasha/RiderProjects/CourseWork2024/LocalNet/Assets/Arrows/arrow-up-right.png";
+                        return;
+                    }
+                    case "up-right":
+                    {
+                        data.Url = "C:/Users/sasha/RiderProjects/CourseWork2024/LocalNet/Assets/Arrows/arrow-right.png";
+                        return;
+                    }
+                }
+            
+            }
+        }
     }
 }

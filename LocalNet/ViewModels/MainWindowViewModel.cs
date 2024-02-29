@@ -1,35 +1,49 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Drawing;
-using System.Globalization;
 using System.Linq;
 using System.Reactive;
-using System.Reactive.Disposables;
-using System.Reactive.Linq;
-using Avalonia;
 using Avalonia.Controls;
-using Avalonia.Data.Converters;
-using Avalonia.Input;
-using Avalonia.Media.Imaging;
-using Avalonia.Platform;
-using DynamicData.Binding;
 using LocalNet.Models;
 using LocalNet.Views;
 using ReactiveUI;
-using Bitmap = Avalonia.Media.Imaging.Bitmap;
-
 #nullable disable
 namespace LocalNet.ViewModels
 {
     public class MainWindowViewModel : ViewModelBase
     {
-        public  ObservableCollection<Item> _items = new ObservableCollection<Item>();
+        private  ObservableCollection<Item> _items = new ObservableCollection<Item>();
         
         public ObservableCollection<Item> Items
         {
             get => _items;
-            // set => this.RaiseAndSetIfChanged(ref _items, value);
+            set => this.RaiseAndSetIfChanged(ref _items, value);
+        }
+
+        private string _mouseX;
+        private string _mouseY;
+        
+        private int _canvasW = 600;
+        private int _canvasH = 600;
+        public string MouseX
+        {
+            get => _mouseX;
+            set => this.RaiseAndSetIfChanged(ref _mouseX, value);
+        }
+        public string MouseY
+        {
+            get => _mouseY;
+            set => this.RaiseAndSetIfChanged(ref _mouseY, value);
+        }
+        public int CanvasW
+        {
+            get => _canvasW;
+            set => this.RaiseAndSetIfChanged(ref _canvasW, value);
+        }
+        public int CanvasH
+        {
+            get => _canvasH;
+            set => this.RaiseAndSetIfChanged(ref _canvasH, value);
         }
         public MainWindowViewModel()
         {
@@ -44,8 +58,15 @@ namespace LocalNet.ViewModels
             CreatePrinter = ReactiveCommand.Create(AddPrinter);
             CreateWrPrinter = ReactiveCommand.Create(AddWrPrinter);
             CreateServer = ReactiveCommand.Create(AddServer);
+            ChangeCanvasSizePlus = ReactiveCommand.Create(CanvasIncrease);
+            ChangeCanvasSizeMinus = ReactiveCommand.Create(CanvasDecrease);
+            ClearMap = ReactiveCommand.Create(Clear);
+            CreateArrowWr = ReactiveCommand.Create(AddArrowWireless);
         }
-
+        public ReactiveCommand<Unit, Unit> CreateArrowWr { get; }
+        public ReactiveCommand<Unit, Unit> ClearMap { get; }
+        public ReactiveCommand<Unit, Unit> ChangeCanvasSizePlus { get; }
+        public ReactiveCommand<Unit, Unit> ChangeCanvasSizeMinus { get; }
         public ReactiveCommand<Unit, Unit> CreateSave { get; }
         public ReactiveCommand<Unit, Unit> CreateButton { get; }
         public ReactiveCommand<Unit, Unit> CreateCommutator { get; }
@@ -57,12 +78,49 @@ namespace LocalNet.ViewModels
         public ReactiveCommand<Unit, Unit> CreatePrinter { get; }
         public ReactiveCommand<Unit, Unit> CreateWrPrinter { get; }
         public ReactiveCommand<Unit, Unit> CreateServer { get; }
+
+        public void CanvasIncrease()
+        {
+            
+            CanvasW += 100;
+            CanvasH += 100;
+            foreach (var item in Items)
+            {
+                item.X += 100;
+                item.Y += 100;
+            }
+        }
+        public void CanvasDecrease()
+        {
+            if (CanvasW > 100 && CanvasH > 100)
+            {
+                CanvasW -= 100;
+                CanvasH -= 100;
+                foreach (var item in Items)
+                {
+                    item.X -= 100;
+                    item.Y -= 100;
+                }
+            }
+        }
+        
+        public void Clear()
+        {
+            Items.Clear();
+        }
+
+        public void AddArrowWireless()
+        {
+            var itemButt = new Item(10,CanvasW/2, CanvasH/2, 50, 50,"C:/Users/sasha/RiderProjects/CourseWork2024/LocalNet/Assets/Arrows/arrow-right.png");
+            Items.Add(itemButt);
+        }
+        
         public void AddButton()
         {
             var count = (from item in Items where item.Id == 0 select item).Count();
             if (count == 0)
             {
-                var itemButt = new Item(0,275, 275, 50, "C:/Users/sasha/RiderProjects/CourseWork2024/LocalNet/Assets/technology-integration.png");
+                var itemButt = new Item(0,CanvasW/2, CanvasH/2, 50,50, "C:/Users/sasha/RiderProjects/CourseWork2024/LocalNet/Assets/technology-integration.png");
                 Items.Add(itemButt);
             }
             else
@@ -73,45 +131,44 @@ namespace LocalNet.ViewModels
         }
         public void AddLaptop()
         {
-            var itemButt = new Item(4,275, 275, 50, "C:/Users/sasha/RiderProjects/CourseWork2024/LocalNet/Assets/laptop.png");
+            var itemButt = new Item(4,CanvasW/2, CanvasH/2, 50, 50,"C:/Users/sasha/RiderProjects/CourseWork2024/LocalNet/Assets/laptop.png");
             Items.Add(itemButt);
         }
         public void AddPhone()
         {
-            var itemButt = new Item(4,275, 275, 50, "C:/Users/sasha/RiderProjects/CourseWork2024/LocalNet/Assets/iphone.png");
+            var itemButt = new Item(4,CanvasW/2, CanvasH/2, 50, 50,"C:/Users/sasha/RiderProjects/CourseWork2024/LocalNet/Assets/iphone.png");
             Items.Add(itemButt);
         }
         public void AddWrRouter()
         {
-            var itemButt = new Item(3,275, 275, 50, "C:/Users/sasha/RiderProjects/CourseWork2024/LocalNet/Assets/wireless-router.png");
+            var itemButt = new Item(3,CanvasW/2, CanvasH/2, 50, 50,"C:/Users/sasha/RiderProjects/CourseWork2024/LocalNet/Assets/wireless-router.png");
             Items.Add(itemButt);
         }
         public void AddPrinter()
         {
-            var itemButt = new Item(2,275, 275, 50, "C:/Users/sasha/RiderProjects/CourseWork2024/LocalNet/Assets/printer.png");
+            var itemButt = new Item(2,CanvasW/2, CanvasH/2, 50, 50,"C:/Users/sasha/RiderProjects/CourseWork2024/LocalNet/Assets/printer.png");
             Items.Add(itemButt);
         }
         public void AddWrPrinter()
         {
-            var itemButt = new Item(4,275, 275, 50, "C:/Users/sasha/RiderProjects/CourseWork2024/LocalNet/Assets/WirelessPrinter.png");
+            var itemButt = new Item(4,CanvasW/2, CanvasH/2, 50,50, "C:/Users/sasha/RiderProjects/CourseWork2024/LocalNet/Assets/WirelessPrinter.png");
             Items.Add(itemButt);
         }
         public void AddServer()
         {
-            var itemButt = new Item(5,275, 275, 50, "C:/Users/sasha/RiderProjects/CourseWork2024/LocalNet/Assets/server.png");
+            var itemButt = new Item(5,CanvasW/2, CanvasH/2, 50, 50,"C:/Users/sasha/RiderProjects/CourseWork2024/LocalNet/Assets/server.png");
             Items.Add(itemButt);
         }
         public void AddPC()
         {
-            var itemButt = new Item(2,275, 275, 50, "C:/Users/sasha/RiderProjects/CourseWork2024/LocalNet/Assets/PC.png");
+            var itemButt = new Item(2,CanvasW/2, CanvasH/2, 50, 50, "C:/Users/sasha/RiderProjects/CourseWork2024/LocalNet/Assets/PC.png");
             Items.Add(itemButt);
         }
         public void AddCommutator()
         {
-            var itemButt = new Item(1,275, 275, 50, "C:/Users/sasha/RiderProjects/CourseWork2024/LocalNet/Assets/Commutator.png");
+            var itemButt = new Item(1,CanvasW/2, CanvasH/2, 50, 50, "C:/Users/sasha/RiderProjects/CourseWork2024/LocalNet/Assets/Commutator.png");
             Items.Add(itemButt);
         }
-
         public void Save()
         {
             
@@ -136,47 +193,53 @@ namespace LocalNet.ViewModels
 
     public class Item : ViewModelBase
     {
-        private int id;
-        private double x;
-        private double y;
-        private int size;
-        private string url; 
+        private int _id;
+        private double _x;
+        private double _y;
+        private int _width;
+        private int _height;
+        private string _url; 
         
-        public Item(int id, double x, double y, int size, string url)
+        public Item(int id, double x, double y, int width,int height, string url)
         {
-            this.id = id;
-            this.x = x;
-            this.y = y;
-            this.size = size;
-            this.url = url;
+            _id = id;
+            _x = x;
+            _y = y;
+            _width = width;
+            _height = height;
+            _url = url;
         }
         public int Id
         {
-            get => id;
-            set => this.RaiseAndSetIfChanged(ref id, value);
+            get => _id;
+            set => this.RaiseAndSetIfChanged(ref _id, value);
         }
 
         public double X
         {
-            get => x;
-            set => this.RaiseAndSetIfChanged(ref x, value);
+            get => _x;
+            set => this.RaiseAndSetIfChanged(ref _x, value);
         }
         public double Y
         {
-            get => y;
-            set => this.RaiseAndSetIfChanged(ref y, value);
+            get =>_y;
+            set => this.RaiseAndSetIfChanged(ref _y, value);
         }
-        public int Size
+        public int Width
         {
-            get => size;
-            set => this.RaiseAndSetIfChanged(ref size, value);
+            get => _width;
+            set => this.RaiseAndSetIfChanged(ref _width, value);
+        }
+        public int Height
+        {
+            get => _height;
+            set => this.RaiseAndSetIfChanged(ref _height, value);
         }
         public string Url
         {
-            get => url;
-            set => this.RaiseAndSetIfChanged(ref url, value);
+            get => _url;
+            set => this.RaiseAndSetIfChanged(ref _url, value);
         }
-        
     }
     
 }

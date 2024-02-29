@@ -27,7 +27,8 @@ public static class ItemsRepository
             var model = new ItemModel();
             model.X = item.X;
             model.Y = item.Y;
-            model.Size = item.Size;
+            model.Width = item.Width;
+            model.Height = item.Width;
             model.Url = item.Url;
             model.Id = item.Id;
             itemsRep.Add(model);
@@ -40,13 +41,14 @@ public static class ItemsRepository
     public static void Load(ObservableCollection<Item> list)
     {
         string path = @"C:\Users\sasha\RiderProjects\CourseWork2024\LocalNet\ItemsRep.json";
+        
         var json = File.ReadAllText(path);
         var itemsRep = JsonConvert.DeserializeObject<List<ItemModel>>(json);
         if (list.Count == 0)
         {
             foreach (var item in itemsRep)
             {
-                var butt = new Item(item.Id,item.X,item.Y,item.Size,item.Url);
+                var butt = new Item(item.Id,item.X,item.Y,item.Width, item.Height,item.Url);
                 list.Add(butt);
             }
         }
@@ -55,7 +57,7 @@ public static class ItemsRepository
             list.Clear();
             foreach (var item in itemsRep)
             {
-                var butt = new Item(item.Id,item.X,item.Y,item.Size,item.Url);
+                var butt = new Item(item.Id,item.X,item.Y,item.Width, item.Height,item.Url);
                 list.Add(butt);
             }
         }

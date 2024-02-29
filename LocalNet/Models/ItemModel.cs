@@ -7,10 +7,22 @@ public class ItemModel
     private int _id;
     private double _x;
     private double _y;
-    private int _size;
+    private int _width;
+    private int _height;
     private string _url;
 
-    
+    public int Width
+    {
+        get => _width;
+        set => _width = value;
+    }
+
+    public int Height
+    {
+        get => _height;
+        set => _height = value;
+    }
+
     public int Id
     {
         get => _id;
@@ -27,12 +39,6 @@ public class ItemModel
     {
         get => _y;
         set => _y = value;
-    }
-
-    public int Size
-    {
-        get => _size;
-        set => _size = value;
     }
 
     public string Url
