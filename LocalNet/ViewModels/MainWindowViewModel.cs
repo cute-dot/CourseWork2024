@@ -23,8 +23,8 @@ namespace LocalNet.ViewModels
         private string _mouseX;
         private string _mouseY;
         
-        private int _canvasW = 600;
-        private int _canvasH = 600;
+        private double _canvasW = 600;
+        private double _canvasH = 600;
         public string MouseX
         {
             get => _mouseX;
@@ -35,12 +35,12 @@ namespace LocalNet.ViewModels
             get => _mouseY;
             set => this.RaiseAndSetIfChanged(ref _mouseY, value);
         }
-        public int CanvasW
+        public double CanvasW
         {
             get => _canvasW;
             set => this.RaiseAndSetIfChanged(ref _canvasW, value);
         }
-        public int CanvasH
+        public double CanvasH
         {
             get => _canvasH;
             set => this.RaiseAndSetIfChanged(ref _canvasH, value);
@@ -62,7 +62,9 @@ namespace LocalNet.ViewModels
             ChangeCanvasSizeMinus = ReactiveCommand.Create(CanvasDecrease);
             ClearMap = ReactiveCommand.Create(Clear);
             CreateArrowWr = ReactiveCommand.Create(AddArrowWireless);
+            CreateArrow = ReactiveCommand.Create(AddArrow);
         }
+        public ReactiveCommand<Unit,Unit> CreateArrow { get; }
         public ReactiveCommand<Unit, Unit> CreateArrowWr { get; }
         public ReactiveCommand<Unit, Unit> ClearMap { get; }
         public ReactiveCommand<Unit, Unit> ChangeCanvasSizePlus { get; }
@@ -109,6 +111,11 @@ namespace LocalNet.ViewModels
             Items.Clear();
         }
 
+        public void AddArrow()
+        {
+            var itemButt = new Item(11,CanvasW/2, CanvasH/2, 50, 50,"C:/Users/sasha/RiderProjects/CourseWork2024/LocalNet/Assets/Arrows/arrDown.png");
+            Items.Add(itemButt);
+        }
         public void AddArrowWireless()
         {
             var itemButt = new Item(10,CanvasW/2, CanvasH/2, 50, 50,"C:/Users/sasha/RiderProjects/CourseWork2024/LocalNet/Assets/Arrows/arrow-right.png");
@@ -177,8 +184,6 @@ namespace LocalNet.ViewModels
             {
                 // item.SuppressChangeNotifications();
                 list.Add(item);
-                Console.WriteLine("1");
-                Console.WriteLine(list[0].X);
             }
             
             ItemsRepository.Save(list);

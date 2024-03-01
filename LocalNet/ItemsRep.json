@@ -1,42 +1,98 @@
 [
   {
-    "Width": 70,
-    "Height": 70,
-    "Id": 0,
-    "X": 275.206611570248,
-    "Y": 82.87002253944442,
-    "Url": "C:/Users/sasha/RiderProjects/CourseWork2024/LocalNet/Assets/technology-integration.png"
-  },
-  {
-    "Width": 70,
-    "Height": 70,
-    "Id": 1,
-    "X": 400.56348610067596,
-    "Y": 185.88279489105952,
-    "Url": "C:/Users/sasha/RiderProjects/CourseWork2024/LocalNet/Assets/Commutator.png"
-  },
-  {
     "Width": 90,
     "Height": 90,
     "Id": 10,
-    "X": 318.9481592787376,
-    "Y": 140.80390683696493,
+    "X": 344.70633526025904,
+    "Y": 194.44337507994402,
     "Url": "C:/Users/sasha/RiderProjects/CourseWork2024/LocalNet/Assets/Arrows/arrow-right.png"
   },
   {
-    "Width": 90,
-    "Height": 90,
-    "Id": 10,
-    "X": 333.4676593128885,
-    "Y": 237.16276210641365,
-    "Url": "C:/Users/sasha/RiderProjects/CourseWork2024/LocalNet/Assets/Arrows/arrow-left.png"
+    "Width": 70,
+    "Height": 70,
+    "Id": 0,
+    "X": 322.26794617853955,
+    "Y": 136.31698654463534,
+    "Url": "C:/Users/sasha/RiderProjects/CourseWork2024/LocalNet/Assets/technology-integration.png"
+  },
+  {
+    "Width": 50,
+    "Height": 50,
+    "Id": 2,
+    "X": 427.93798237825257,
+    "Y": 360.22129635953814,
+    "Url": "C:/Users/sasha/RiderProjects/CourseWork2024/LocalNet/Assets/PC.png"
+  },
+  {
+    "Width": 50,
+    "Height": 50,
+    "Id": 1,
+    "X": 424.9914623318075,
+    "Y": 243.30988320469925,
+    "Url": "C:/Users/sasha/RiderProjects/CourseWork2024/LocalNet/Assets/Commutator.png"
+  },
+  {
+    "Width": 70,
+    "Height": 70,
+    "Id": 11,
+    "X": 416.36363636363615,
+    "Y": 290.0,
+    "Url": "C:/Users/sasha/RiderProjects/CourseWork2024/LocalNet/Assets/Arrows/arrDown.png"
+  },
+  {
+    "Width": 50,
+    "Height": 50,
+    "Id": 11,
+    "X": 429.0909090909088,
+    "Y": 409.9999999999997,
+    "Url": "C:/Users/sasha/RiderProjects/CourseWork2024/LocalNet/Assets/Arrows/arrDown.png"
   },
   {
     "Width": 70,
     "Height": 70,
     "Id": 2,
-    "X": 275.0,
-    "Y": 282.00000000000006,
-    "Url": "C:/Users/sasha/RiderProjects/CourseWork2024/LocalNet/Assets/PC.png"
+    "X": 419.99999999999966,
+    "Y": 460.9090909090904,
+    "Url": "C:/Users/sasha/RiderProjects/CourseWork2024/LocalNet/Assets/printer.png"
+  },
+  {
+    "Width": 90,
+    "Height": 90,
+    "Id": 3,
+    "X": 32.727272727273316,
+    "Y": 489.09090909090855,
+    "Url": "C:/Users/sasha/RiderProjects/CourseWork2024/LocalNet/Assets/wireless-router.png"
+  },
+  {
+    "Width": 90,
+    "Height": 90,
+    "Id": 10,
+    "X": 121.81818181818232,
+    "Y": 444.545454545454,
+    "Url": "C:/Users/sasha/RiderProjects/CourseWork2024/LocalNet/Assets/Arrows/arrow-up-right.png"
+  },
+  {
+    "Width": 90,
+    "Height": 90,
+    "Id": 10,
+    "X": 58.18181818181881,
+    "Y": 399.09090909090884,
+    "Url": "C:/Users/sasha/RiderProjects/CourseWork2024/LocalNet/Assets/Arrows/arrow-up-right.png"
+  },
+  {
+    "Width": 50,
+    "Height": 50,
+    "Id": 4,
+    "X": 112.7272727272732,
+    "Y": 349.0909090909089,
+    "Url": "C:/Users/sasha/RiderProjects/CourseWork2024/LocalNet/Assets/iphone.png"
+  },
+  {
+    "Width": 50,
+    "Height": 50,
+    "Id": 4,
+    "X": 180.90909090909133,
+    "Y": 400.9090909090906,
+    "Url": "C:/Users/sasha/RiderProjects/CourseWork2024/LocalNet/Assets/laptop.png"
   }
 ]

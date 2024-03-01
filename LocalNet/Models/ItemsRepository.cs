@@ -10,7 +10,6 @@ namespace LocalNet.Models;
 
 public static class ItemsRepository
 {
-    
     public static void Save(List<Item> list)
     {
         string path = @"C:\Users\sasha\RiderProjects\CourseWork2024\LocalNet\ItemsRep.json";
@@ -37,7 +36,6 @@ public static class ItemsRepository
         File.WriteAllText(path, newjson);
 
     }
-
     public static void Load(ObservableCollection<Item> list)
     {
         string path = @"C:\Users\sasha\RiderProjects\CourseWork2024\LocalNet\ItemsRep.json";

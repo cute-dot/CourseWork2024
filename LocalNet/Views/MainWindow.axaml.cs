@@ -64,14 +64,17 @@ public partial class MainWindow :  Window
     {
         var arrowButt = e.Source as Control;
         var data = (Item)arrowButt.DataContext;
+        var dataList = (MainWindowViewModel)DataContext;
+        if (e.GetCurrentPoint(arrowButt).Properties.IsMiddleButtonPressed)
+        {
+            dataList.Items.Remove(data);
+        }
         if (e.GetCurrentPoint(arrowButt).Properties.IsRightButtonPressed)
         {
             if (data.Id == 10)
             {
                 string getUrl = data.Url;
                 getUrl = getUrl.Substring(73, getUrl.Length-77);
-                Console.WriteLine(data.Url);
-                Console.WriteLine(getUrl);
                 switch (getUrl)
                 {
                     case "right":
@@ -92,6 +95,37 @@ public partial class MainWindow :  Window
                     case "up-right":
                     {
                         data.Url = "C:/Users/sasha/RiderProjects/CourseWork2024/LocalNet/Assets/Arrows/arrow-right.png";
+                        return;
+                    }
+                }
+            
+            }
+            if (data.Id == 11)
+            {
+                string getUrl = data.Url;
+                getUrl = getUrl.Substring(70, getUrl.Length-74);
+                Console.WriteLine(data.Url);
+                Console.WriteLine(getUrl);
+                switch (getUrl)
+                {
+                    case "Right":
+                    {
+                        data.Url = "C:/Users/sasha/RiderProjects/CourseWork2024/LocalNet/Assets/Arrows/arrDown.png";
+                        return;
+                    }
+                    case "Down":
+                    {
+                        data.Url = "C:/Users/sasha/RiderProjects/CourseWork2024/LocalNet/Assets/Arrows/arrLeft.png";
+                        return;
+                    }
+                    case "Left":
+                    {
+                        data.Url = "C:/Users/sasha/RiderProjects/CourseWork2024/LocalNet/Assets/Arrows/arrUp.png";
+                        return;
+                    }
+                    case "Up":
+                    {
+                        data.Url = "C:/Users/sasha/RiderProjects/CourseWork2024/LocalNet/Assets/Arrows/arrRight.png";
                         return;
                     }
                 }
